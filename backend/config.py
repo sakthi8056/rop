@@ -29,6 +29,8 @@ class Settings(BaseSettings):
 
     # Database
     DATABASE_PATH: str = str(BASE_DIR / "rop_screening.db")
+    TURSO_DATABASE_URL: str = ""
+    TURSO_AUTH_TOKEN: str = ""
 
     # File storage
     UPLOADS_DIR: str = str(BASE_DIR / "uploads")
@@ -77,6 +79,10 @@ class Settings(BaseSettings):
     @property
     def demo_mode(self) -> bool:
         return not self.is_model_available
+
+    @property
+    def is_turso_enabled(self) -> bool:
+        return bool(self.TURSO_DATABASE_URL and self.TURSO_AUTH_TOKEN)
 
     class Config:
         env_file = (str(BASE_DIR / ".env"), ".env")
