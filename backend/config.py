@@ -23,7 +23,7 @@ class Settings(BaseSettings):
     DEBUG: bool = False
 
     # Server
-    HOST: str = "127.0.0.1"
+    HOST: str = "0.0.0.0"
     PORT: int = 8000
     CORS_ORIGINS: list[str] = ["http://localhost:5173", "http://127.0.0.1:5173"]
 
@@ -83,6 +83,21 @@ class Settings(BaseSettings):
     @property
     def is_turso_enabled(self) -> bool:
         return bool(self.TURSO_DATABASE_URL and self.TURSO_AUTH_TOKEN)
+
+    @property
+    def cors_origins_list(self) -> list[str]:
+        if isinstance(self.CORS_ORIGINS, list):
+            return self.CORS_ORIGINS
+        if isinstance(self.CORS_ORIGINS, str):
+            import json
+            try:
+                parsed = json.loads(self.CORS_ORIGINS)
+                if isinstance(parsed, list):
+                    return parsed
+            except Exception:
+                pass
+            return [o.strip() for o in self.CORS_ORIGINS.split(",") if o.strip()]
+        return ["http://localhost:5173", "http://127.0.0.1:5173"]
 
     class Config:
         env_file = (str(BASE_DIR / ".env"), ".env")

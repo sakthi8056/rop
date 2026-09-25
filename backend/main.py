@@ -62,7 +62,8 @@ app = FastAPI(
 settings = get_settings()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.CORS_ORIGINS,
+    allow_origins=settings.cors_origins_list,
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -117,5 +118,8 @@ async def health_check():
 
 if __name__ == "__main__":
     import uvicorn
+    import os
 
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    host = os.environ.get("HOST", settings.HOST)
+    port = int(os.environ.get("PORT", str(settings.PORT)))
+    uvicorn.run("main:app", host=host, port=port, reload=settings.DEBUG)
