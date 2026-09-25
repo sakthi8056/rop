@@ -1,0 +1,41 @@
+:root {
+  /* Colors - Medical Theme */
+  --color-primary: #0F766E;        /* Teal 700 - Trust, Medical */
+  --color-primary-light: #14B8A6;  /* Teal 500 */
+  --color-primary-dark: #0D5D56;
+  --color-danger: #DC2626;         /* Red 600 - Urgent alerts */
+  --color-danger-light: #FEE2E2;
+  --color-warning: #F59E0B;        /* Amber 500 - Caution */
+  --color-warning-light: #FEF3C7;
+  --color-success: #16A34A;        /* Green 600 - Normal results */
+  --color-success-light: #DCFCE7;
+  
+  --color-surface: #FFFFFF;
+  --color-bg: #F0FDFA;             /* Teal 50 */
+  --color-bg-alt: #F8FAFC;         /* Slate 50 */
+  
+  /* Text */
+  --color-text: #1E293B;           /* Slate 800 */
+  --color-text-secondary: #64748B; /* Slate 500 */
+  --color-text-muted: #94A3B8;     /* Slate 400 */
+  --color-text-inverse: #FFFFFF;
+
+  /* Borders */
+  --color-border: #E2E8F0;         /* Slate 200 */
+  
+  /* Typography */
+  --font-primary: 'Inter', 'Noto Sans Tamil', sans-serif;
+  
+  /* Layout & Spacing */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-elevated: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+  /* Header & Nav */
+  --header-height: 64px;
+  --sidebar-width: 250px;
+}

@@ -1,0 +1,234 @@
+/* Results specific styles */
+
+.results-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .results-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.image-navigator {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  background: var(--color-surface);
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  font-weight: 500;
+}
+
+.visualization-card .card-header {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .visualization-card .card-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.view-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.img-display-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000;
+  padding: 24px;
+}
+
+.img-display-container img {
+  max-width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.xai-explanation {
+  margin-top: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  text-align: center;
+  max-width: 80%;
+}
+
+.result-metric {
+  margin-bottom: 16px;
+}
+
+.metric-label {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.metric-value {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.metric-value.classification {
+  font-size: 24px;
+  color: var(--color-primary);
+}
+
+.probabilities-bar {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
+
+.prob-item {
+  margin-bottom: 12px;
+}
+
+.prob-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.prob-track {
+  height: 8px;
+  background-color: var(--color-bg-alt);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.prob-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.fill-success { background-color: var(--color-success); }
+.fill-warning { background-color: var(--color-warning); }
+.fill-danger { background-color: var(--color-danger); }
+
+/* Recommendation Card Styling */
+.recommendation-card.urgency-urgent {
+  border-color: var(--color-danger);
+  background-color: var(--color-danger-light);
+}
+
+.recommendation-card.urgency-urgent .card-header {
+  border-bottom-color: rgba(220, 38, 38, 0.2);
+}
+
+.recommendation-card.urgency-elevated {
+  border-color: var(--color-warning);
+  background-color: var(--color-warning-light);
+}
+
+.recommendation-card.urgency-routine {
+  border-color: var(--color-success);
+  background-color: var(--color-success-light);
+}
+
+.recommendation-text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.limitations-card {
+  background-color: #FFFBEB;
+  border-color: #FDE68A;
+  color: #92400E;
+  font-size: 14px;
+}
+
+/* Canonical Result Banner */
+.canonical-banner {
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-width: 2px;
+  border-style: solid;
+  box-shadow: var(--shadow-sm);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.canonical-banner-danger {
+  background-color: #FEF2F2;
+  border-color: #DC2626;
+  color: #991B1B;
+}
+
+.canonical-banner-success {
+  background-color: #F0FDF4;
+  border-color: #16A34A;
+  color: #166534;
+}
+
+.canonical-banner-warning {
+  background-color: #FFFBEB;
+  border-color: #D97706;
+  color: #92400E;
+}
+
+.canonical-banner-demo {
+  background-color: #F8FAFC;
+  border-color: #64748B;
+  color: #334155;
+}
+
+.demo-badge {
+  background-color: #FEF3C7;
+  color: #B45309;
+  border: 1px solid #FCD34D;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.meta-label {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 2px;
+}
+
+.meta-val {
+  font-size: 14px;
+  color: var(--color-text-primary);
+  font-weight: 500;
+}

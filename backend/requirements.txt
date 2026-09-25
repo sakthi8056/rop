@@ -1,0 +1,36 @@
+# Core Web & API
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+python-multipart>=0.0.9
+
+# Async Database
+aiosqlite>=0.20.0
+
+# Security & Authentication
+python-jose[cryptography]>=3.3.0
+bcrypt>=4.0.0
+
+# Image Processing
+opencv-python-headless>=4.10.0
+Pillow>=10.4.0
+
+# Templating & Reports
+Jinja2>=3.1.4
+
+# Configuration & Utilities
+pydantic>=2.9.0
+pydantic-settings>=2.5.0
+aiofiles>=24.1.0
+
+# Testing
+pytest>=8.0.0
+pytest-asyncio>=0.24.0
+httpx>=0.27.0
+
+# Deep Learning & Explainability (EfficientNet-B0 & Grad-CAM)
+torch>=2.0.0
+torchvision>=0.15.0
+grad-cam>=1.5.0
+
+# PDF Engine (pure Python, cross-platform)
+reportlab>=4.0.0

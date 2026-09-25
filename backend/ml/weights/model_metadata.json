@@ -1,0 +1,52 @@
+{
+  "model_architecture": "EfficientNet-B0",
+  "num_classes": 3,
+  "class_labels": [
+    "Normal",
+    "Pre-Plus/Mild",
+    "Plus Disease/Severe"
+  ],
+  "input_size": 224,
+  "training_epochs": 5,
+  "best_epoch": 1,
+  "best_val_accuracy": 1.0,
+  "trained_at": "2026-09-19T18:36:49.007313+00:00",
+  "training_history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.5339,
+      "train_acc": 0.8733,
+      "val_loss": 0.0441,
+      "val_acc": 1.0
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.1198,
+      "train_acc": 0.9667,
+      "val_loss": 0.0104,
+      "val_acc": 1.0
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.2085,
+      "train_acc": 0.9467,
+      "val_loss": 0.0366,
+      "val_acc": 1.0
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.1002,
+      "train_acc": 0.9667,
+      "val_loss": 0.0127,
+      "val_acc": 1.0
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.0539,
+      "train_acc": 0.9933,
+      "val_loss": 0.0138,
+      "val_acc": 1.0
+    }
+  ],
+  "clinical_disclaimer": "Research Prototype Model: Clinical diagnostic validation and regulatory approval (e.g. FDA/CE/CDSCO) are required before deployment in live care."
+}

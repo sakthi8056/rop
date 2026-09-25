@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        @font-face {
+            font-family: 'NotoSansTamil';
+            src: url('file:///{{ fonts_dir }}/NotoSansTamil-Regular.ttf') format('truetype');
+            font-weight: normal;
+        }
+        @font-face {
+            font-family: 'NotoSansTamil';
+            src: url('file:///{{ fonts_dir }}/NotoSansTamil-Bold.ttf') format('truetype');
+            font-weight: bold;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'NotoSansTamil', 'Nirmala UI', 'Latha', 'Segoe UI', Arial, sans-serif;
+            font-size: 11pt;
+            color: #1a1a2e;
+            line-height: 1.5;
+            padding: 30px;
+        }
+
+        .report-header {
+            text-align: center;
+            border-bottom: 3px solid #0F766E;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .report-header h1 {
+            font-size: 18pt;
+            color: #0F766E;
+            margin-bottom: 4px;
+        }
+        .report-header .subtitle {
+            font-size: 10pt;
+            color: #64748B;
+        }
+        .report-header .report-id {
+            font-size: 9pt;
+            color: #94A3B8;
+            margin-top: 6px;
+        }
+
+        .prototype-banner {
+            background: #FEF3C7;
+            border: 2px solid #F59E0B;
+            color: #92400E;
+            padding: 8px 16px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 10pt;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .demo-watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-35deg);
+            font-size: 72pt;
+            color: rgba(245, 158, 11, 0.12);
+            font-weight: bold;
+            z-index: 0;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .section {
+            margin-bottom: 18px;
+            page-break-inside: avoid;
+        }
+        .section-title {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #0F766E;
+            border-bottom: 1px solid #E2E8F0;
+            padding-bottom: 4px;
+            margin-bottom: 10px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 20px;
+        }
+        .info-item {
+            display: flex;
+            gap: 8px;
+        }
+        .info-label {
+            font-weight: 600;
+            color: #475569;
+            min-width: 160px;
+        }
+        .info-value {
+            color: #1E293B;
+        }
+
+        .result-box {
+            padding: 14px 20px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        .result-normal { background: #DCFCE7; border-left: 5px solid #16A34A; }
+        .result-mild { background: #FEF9C3; border-left: 5px solid #F59E0B; }
+        .result-severe { background: #FEE2E2; border-left: 5px solid #DC2626; }
+        .result-ungradable { background: #F1F5F9; border-left: 5px solid #94A3B8; }
+        .result-demo { background: #FFF7ED; border-left: 5px solid #F97316; }
+
+        .result-classification {
+            font-size: 14pt;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 10px 0;
+        }
+        .image-container img {
+            max-width: 280px;
+            max-height: 280px;
+            border: 1px solid #E2E8F0;
+            border-radius: 4px;
+        }
+        .image-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .image-item {
+            text-align: center;
+        }
+        .image-caption {
+            font-size: 9pt;
+            color: #64748B;
+            margin-top: 4px;
+        }
+
+        .recommendation-box {
+            background: #F0FDFA;
+            border: 1px solid #99F6E4;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin: 10px 0;
+        }
+
+        .limitations-box {
+            background: #FFFBEB;
+            border: 1px solid #FDE68A;
+            border-radius: 6px;
+            padding: 10px 14px;
+            font-size: 9pt;
+            color: #92400E;
+            margin: 10px 0;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 12px;
+            border-top: 2px solid #0F766E;
+            font-size: 8pt;
+            color: #94A3B8;
+            text-align: center;
+        }
+        .footer .disclaimer {
+            font-size: 8pt;
+            color: #64748B;
+            margin-bottom: 6px;
+        }
+
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+    </style>
+</head>
+<body>
+
+{% if is_demo %}
+<div class="demo-watermark">DEMO / RESEARCH PROTOTYPE</div>
+{% endif %}
+
+<div class="report-header">
+    <h1>{{ t.app_name }}</h1>
+    <div class="subtitle">{{ t.report_subtitle }}</div>
+    <div class="report-id">{{ t.report_id }}: {{ report_id }}</div>
+</div>
+
+{% if is_demo %}
+<div class="prototype-banner">
+    ⚠️ {{ t.demo_banner }}
+</div>
+{% endif %}
+
+<div class="prototype-banner" style="background: #F0FDFA; border-color: #0F766E; color: #0F766E; font-weight: normal;">
+    {{ t.prototype_notice }}
+</div>
+
+<!-- Patient Information -->
+<div class="section">
+    <div class="section-title">{{ t.patient_info }}</div>
+    <div class="info-grid">
+        <div class="info-item">
+            <span class="info-label">{{ t.patient_id }}:</span>
+            <span class="info-value">{{ patient.patient_id or '—' }}</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">{{ t.infant_name }}:</span>
+            <span class="info-value">{{ patient.infant_name or '—' }}</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">{{ t.gender or 'Gender' }}:</span>
+            <span class="info-value">{{ patient.gender or '—' }}</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">{{ t.dob }}:</span>
+            <span class="info-value">{{ patient.date_of_birth or '—' }}</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">{{ t.gestational_age }}:</span>
+            <span class="info-value">{{ patient.gestational_age_weeks or '—' }} {{ t.weeks }} {{ patient.gestational_age_days or 0 }} {{ t.days }}</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">{{ t.birth_weight }}:</span>
+            <span class="info-value">{{ patient.birth_weight_grams or '—' }} {{ t.grams }}</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">{{ t.hospital }}:</span>
+            <span class="info-value">{{ patient.hospital_name or '—' }}</span>
+        </div>
+    </div>
+    {% if patient.clinical_history %}
+    <div class="info-item" style="margin-top: 8px;">
+        <span class="info-label">{{ t.clinical_history }}:</span>
+        <span class="info-value">{{ patient.clinical_history }}</span>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Screening Details -->
+<div class="section">
+    <div class="section-title">{{ t.screening_details }}</div>
+    <div class="info-grid">
+        <div class="info-item">
+            <span class="info-label">{{ t.screening_date }}:</span>
+            <span class="info-value">{{ screening_date }}</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">{{ t.screened_by }}:</span>
+            <span class="info-value">{{ screened_by or '—' }}</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">{{ t.session_id }}:</span>
+            <span class="info-value">{{ session_id }}</span>
+        </div>
+    </div>
+</div>
+
+<!-- Image Quality -->
+{% if quality_status %}
+<div class="section">
+    <div class="section-title">{{ t.image_quality }}</div>
+    <div class="info-item">
+        <span class="info-label">{{ t.quality_status }}:</span>
+        <span class="info-value">{{ quality_status }}</span>
+    </div>
+</div>
+{% endif %}
+
+<!-- Retinal Images -->
+{% if retinal_image_b64 %}
+<div class="section">
+    <div class="section-title">{{ t.retinal_images }}</div>
+    <div class="image-row">
+        <div class="image-item">
+            <img src="data:image/png;base64,{{ retinal_image_b64 }}" alt="Retinal Image">
+            <div class="image-caption">{{ t.original_image }}</div>
+        </div>
+        {% if overlay_b64 %}
+        <div class="image-item">
+            <img src="data:image/png;base64,{{ overlay_b64 }}" alt="AI Attention Overlay">
+            <div class="image-caption">{{ t.ai_overlay }}</div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+<!-- Screening Result -->
+<div class="section">
+    <div class="section-title">{{ t.screening_result }}</div>
+    <div class="result-box {{ result_style }}">
+        <div class="result-classification">{{ classification or t.no_result }}</div>
+        {% if confidence is not none %}
+        <div>{{ t.confidence }}: {{ (confidence * 100) | round(1) }}%</div>
+        {% endif %}
+        {% if probabilities %}
+        <div style="margin-top: 6px; font-size: 9pt;">
+            {% for label, prob in probabilities.items() %}
+            <span>{{ label }}: {{ (prob * 100) | round(1) }}%</span>{% if not loop.last %} · {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <div class="info-grid" style="margin-top: 8px;">
+        <div class="info-item">
+            <span class="info-label">{{ t.model_name }}:</span>
+            <span class="info-value">{{ model_name or '—' }}</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">{{ t.model_version }}:</span>
+            <span class="info-value">{{ model_version or '—' }}</span>
+        </div>
+    </div>
+</div>
+
+<!-- Recommendation -->
+<div class="section">
+    <div class="section-title">{{ t.recommendation }}</div>
+    <div class="recommendation-box">
+        {{ recommendation }}
+    </div>
+</div>
+
+<!-- Limitations -->
+<div class="section">
+    <div class="limitations-box">
+        <strong>{{ t.limitations }}:</strong> {{ screening_limitations }}
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <div class="disclaimer">{{ t.disclaimer }}</div>
+    <div>{{ t.generated_at }}: {{ generated_at }} | {{ t.app_name }} v{{ app_version }}</div>
+</div>
+
+</body>
+</html>
